@@ -36,6 +36,13 @@ source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/features-d
 features-dump 
 ```
 
+- `groovy.karaf`: Installs Groovy shell as a command
+```
+source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/groovy.karaf
+# sample usage
+groovy:me '3 * 3'
+```
+
 - `idof.karaf`: Return numerical id of a bundle given a Symbolic-Name
 ```
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/idof.karaf

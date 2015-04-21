@@ -1,0 +1,7 @@
+# sample usage:
+# groovy:me '3 * 3'
+groovy = {
+    install -s mvn:org.codehaus.groovy/groovy-all/2.4.3
+    idof = { ((list -s -t 0 | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim }
+    addcommand groovy (($.context bundle (eval (idof groovy-all))) loadClass groovy.util.Eval)
+}
