@@ -1,0 +1,2 @@
+# enable Byteman classes for bootdelegation
+install -s 'wrap:jardir:etc$overwrite=merge&Bundle-SymbolicName=BytemanEnabler&Bundle-Version=0.0.0&Export-Package=org.jboss.byteman.rule,org.jboss.byteman.rule.exception&Fragment-Host=system.bundle; extension:=framework'
