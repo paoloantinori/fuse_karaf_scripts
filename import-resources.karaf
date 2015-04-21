@@ -1,0 +1,21 @@
+# Imports resources (ex. xml or properties) into a Fabric Profile
+# ex.
+# import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest"
+# profile-display --display-resources paolo
+
+import-resource = {
+ 
+	_profile = $1
+	_version = $2
+	_logical_file_path = $3
+	_physical_file_path = $4
+	 
+	_file_content = ((cat file://$_physical_file_path) | tac)
+	 
+	_sref = $.context getServiceReference "io.fabric8.api.FabricService"
+	_srv = $.context getService $_sref
+	_dstore = $_srv getdatastore
+	 
+	$_dstore setFileConfiguration $_version $_profile $_logical_file_path ($_file_content getbytes)
+	 
+}
