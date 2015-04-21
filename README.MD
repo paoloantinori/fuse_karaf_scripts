@@ -17,6 +17,13 @@ JBossFuse:karaf@root> idof jline
 ```
 
 ### TOC:
+- `lang_utils.karaf`: Generic helper aliases for other scripts, sequences, counters, etc...
+```
+source https://raw.githubusercontent.com/paoloantinori/fuse_karaf_scripts/master/lang_utils.karaf
+# sample usage
+countdown 10
+```
+
 - `byteman.karaf`: Enables Byteman packages in bootdelegation classloader via a fragment 
 ```
 source https://raw.githubusercontent.com/paoloantinori/fuse_karaf_scripts/master/byteman.karaf

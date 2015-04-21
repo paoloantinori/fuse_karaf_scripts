@@ -1,0 +1,16 @@
+# returns true if it has not param, else otherwise
+empty = { if {"" equals ("" valueof "$1") } {true} {false} }
+
+# funny side effect but starts from -1 if you don't pass any initial seed
+sequence = {
+    empty = { if {"" equals ("" valueof "$1") } {true} {false} }
+    if {(empty $1)} {seed = (new java.util.concurrent.atomic.AtomicInteger ($seed incrementAndGet) ) } {seed = (new java.util.concurrent.atomic.AtomicInteger $1) } 
+    $seed get
+}
+
+# pass an initial seed to create a reverse sequence, keep invoking without params for next values
+countdown = {
+    empty = { if {"" equals ("" valueof "$1") } {true} {false} }
+    if {(empty $1)} {seed = (new java.util.concurrent.atomic.AtomicInteger ($seed decrementAndGet) ) } {seed = (new java.util.concurrent.atomic.AtomicInteger $1) } 
+    $seed get
+}
