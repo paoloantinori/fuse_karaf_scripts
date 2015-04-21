@@ -1,5 +1,6 @@
 # sample usage:
 # groovy:me '3 * 3'
+# a = "var in karaf scope" ; groovy:me var_in_groovy "$a" "var_in_groovy * 3" # ex. showing forwarding of karaf vars to groovy context
 groovy = {
     install -s mvn:org.codehaus.groovy/groovy-all/2.4.3
     idof = { ((list -s -t 0 | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim }
