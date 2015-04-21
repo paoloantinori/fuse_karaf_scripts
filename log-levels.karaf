@@ -1,10 +1,10 @@
 # prints log4j Categories and correspondent actual Log value
 
 log-levels = {
-	idof = { ((list -s -t 0 | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim }
-	addcommand log_config (($.context bundle (eval (idof org.ops4j.pax.logging.pax-logging-service))) loadClass org.apache.log4j.LogManager)
-	addcommand collections (($.context bundle 0) loadClass java.util.Collections)
-	sortable = []
-	each (collections:list (log_config:getcurrentloggers)) {name= ($it name); level =  (($it effectivelevel) tostring) ; ($sortable add "$name - $level") } 
-	($sortable | sort)
+    idof = { ((list -s -t 0 | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim }
+    addcommand log_config (($.context bundle (eval (idof org.ops4j.pax.logging.pax-logging-service))) loadClass org.apache.log4j.LogManager)
+    addcommand collections (($.context bundle 0) loadClass java.util.Collections)
+    sortable = []
+    each (collections:list (log_config:getcurrentloggers)) {name= ($it name); level =  (($it effectivelevel) tostring) ; ($sortable add "$name - $level") } 
+    ($sortable | sort)
 }

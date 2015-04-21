@@ -40,6 +40,7 @@ features-dump
 ```bash
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/groovy.karaf
 # sample usage
+install_groovy
 groovy:me '3 * 3'
 a = "var in karaf scope" ; groovy:me var_in_groovy "$a" "var_in_groovy * 3" # ex. showing forwarding of karaf vars to groovy context
 ```

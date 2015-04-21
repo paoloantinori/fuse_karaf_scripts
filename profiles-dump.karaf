@@ -1,4 +1,4 @@
 # to redirect to file, append " | tac -f ~/profiles_dump.log "
 profiles-dump = {
-	each ((profile-list | tac)  split "\\n") {f =  (((($it substring 0 48) trim ) replaceAll "\\[" "") replaceAll "]" "") ; echo (profile-display -o "$f")}  
+    each ((profile-list | tac)  split "\\n") {f =  (((($it substring 0 48) trim ) replaceAll "\\[" "") replaceAll "]" "") ; echo (profile-display -o "$f")}  
 }
