@@ -1,5 +1,6 @@
 ##### displays the content of all the available features
-
-addcommand arrays (($.context bundle 0) loadClass java.util.Arrays)
-features_list = (arrays:asList ((features:list --ordered | tac)  split '\n'))
-each ($features_list sublist 1 ($features_list size)) {arr = ($it split "]" ); arr = ( $arr 2) ; arr = ($arr split " ") ;arr = ($arr 1) ; shell:printf "######################### %-20s #################" $arr ; echo "";echo (features:info --bundle  $arr) }
+features-dump = {
+  addcommand arrays (($.context bundle 0) loadClass java.util.Arrays)
+  features_list = (arrays:asList ((features:list --ordered | tac)  split '\n'))
+  each ($features_list sublist 1 ($features_list size)) {arr = ($it split "]" ); arr = ( $arr 2) ; arr = ($arr split " ") ;arr = ($arr 1) ; shell:printf "######################### %-20s #################" $arr ; echo "";echo (features:info --bundle  $arr) }
+}
