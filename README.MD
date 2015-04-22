@@ -62,11 +62,20 @@ import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest"
 - `log-levels.karaf`: Prints the current level of all the known Loggers registered on the platform 
 ```bash
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/log-levels.karaf
+# sample usage
 log-levels
+```
+
+- `log-entry.karaf`: Adds a log entry into configured log file.
+```bash
+source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/log-entry.karaf
+# sample usage
+log-entry this will be added to logs
 ```
 
 - `profiles-dump.karaf`: Recursively prints the content of all Fabirc profiles 
 ```bash
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/profiles-dump.karaf
+# sample usage
 profiles-dump
 ```
