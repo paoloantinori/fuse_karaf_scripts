@@ -1,0 +1,6 @@
+log-entry = {
+    idof = { ((list -s -t 0 | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim }
+    addcommand logger (($.context bundle (eval (idof org.ops4j.pax.logging.pax-logging-service))) loadClass org.apache.log4j.Logger)
+    l = (logger:getlogger "SHELL")
+    $l info "$args"
+}
