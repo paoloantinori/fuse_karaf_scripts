@@ -1,0 +1,21 @@
+# set log level for all loggers containing the list of keywords
+# ex. log-set-multi  WARN curator jolokia
+
+log-set-multi = {
+    LEVEL = $1
+    COMMAND = "log:set $LEVEL "
+    needles = ("$args" split " ")
+    addcommand arrays (($.context bundle 0) loadClass java.util.Arrays)
+    needles = arrays:asList $needles
+    needles = $needles sublist 1 ($needles size)
+    idof = { ((list -s -t 0 | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim }
+
+    LogManager = (($.context bundle (eval (idof org.ops4j.pax.logging.pax-logging-service))) loadClass org.apache.log4j.LogManager) newInstance
+    addcommand collections (($.context bundle 0) loadClass java.util.Collections)
+    map = (new java.util.HashMap)
+    each (collections:list ($LogManager getcurrentloggers)) {name= ($it name); level =  (($it effectivelevel) tostring) ;  $map put $name $level }     
+
+    log-set-single = { needle = ("$1" touppercase) ; each ($map keyset) { test = ( ("$it" touppercase) contains  "$needle") ;  if { "true" equals "$test" } { echo "$COMMAND$it"; eval "$COMMAND$it" } } }
+
+    each $needles {log-set-single $it}
+} 

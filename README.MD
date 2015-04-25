@@ -73,6 +73,13 @@ source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/log-entry.
 log-entry this will be added to logs
 ```
 
+- `log-set-multi.karaf`: Set a log level to each logger containing keyword (ignore case) in its name.
+```bash
+source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/log-set-multi.karaf
+# sample usage
+log-set-multi DEBUG jolokia curator
+```
+
 - `profiles-dump.karaf`: Recursively prints the content of all Fabirc profiles 
 ```bash
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/profiles-dump.karaf
