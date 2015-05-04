@@ -1,0 +1,19 @@
+# I couldn't manage to turn it inot an alias, due to the dynamic-import lag and some other problem with "eval" while passing variables to aliases
+
+idof = { ((list -s -t 0 | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim }
+
+dynamic-import (idof org.apache.karaf.shell.commands)
+# manually wait 5 secs here to allow interactive shell to recover
+
+($.context bundle (eval (idof io.fabric8.fabric-zookeeper))) loadClass org.apache.zookeeper.server.DatadirCleanupManager    
+
+karaf_home = (system-property karaf.home | tac)
+file_separator = (system-property file.separator | tac)
+zk_data_dir = "$karaf_home$file_separator$data/zookeeper/0000" 
+
+
+purgeMgr = new org.apache.zookeeper.server.DatadirCleanupManager $zk_data_dir  $zk_data_dir  3  1
+
+$purgeMgr start
+
+dynamic-import (idof org.apache.karaf.shell.commands)
