@@ -1,0 +1,6 @@
+##### produce a list with only symbolic names of bundles
+symbolic-names = {
+  addcommand arrays (($.context bundle 0) loadClass java.util.Arrays)
+  symbolic_names = (arrays:asList ((la -s | tac)  split '\n'))
+  each ($symbolic_names sublist 2 ($symbolic_names size)) {arr = ($it split "]" ); arr = ( $arr 4) ; arr = (($arr trim) split " ") ; echo ($arr 0) }
+}

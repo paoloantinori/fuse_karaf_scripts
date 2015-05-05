@@ -1,0 +1,9 @@
+##### Produces a list of bundles startup levels
+# requires idof
+# requires symbolic-names
+startup-levels = {
+  addcommand arrays (($.context bundle 0) loadClass java.util.Arrays)
+  bundles = (arrays:asList ((symbolic-names | tac)  split '\n'))
+  
+  each ($bundles) { echo (idof $it) - $it - ( bundle-level --force $it)  }
+}

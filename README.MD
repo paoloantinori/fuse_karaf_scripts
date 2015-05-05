@@ -87,6 +87,20 @@ source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/profiles-d
 profiles-dump
 ```
 
+- `symbolic-names.karaf`: Produces a list of only symbolic-names of installed bundles
+```bash
+source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/symbolic-names.karaf
+# sample usage
+symbolic-names
+```
+
+- `startup-levels.karaf`: Produces a list of startup levels of all bundles
+```bash
+source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/startup-levels.karaf
+# sample usage
+startup-levels
+```
+
 - `zk-enable-autopurge.karaf`: Enable autopurge functionality for ZK 
 ```bash
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/profiles-dump.karaf
