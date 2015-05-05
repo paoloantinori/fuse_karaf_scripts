@@ -85,6 +85,7 @@ log-set-multi DEBUG jolokia curator
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/profiles-dump.karaf
 # sample usage
 profiles-dump
+```
 
 - `zk-enable-autopurge.karaf`: Enable autopurge functionality for ZK 
 ```bash
