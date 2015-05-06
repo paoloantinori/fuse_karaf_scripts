@@ -30,7 +30,7 @@ source https://raw.githubusercontent.com/paoloantinori/fuse_karaf_scripts/master
 ```
 
 - `features-dump.karaf`: Prints the content of all the available features known to runtime
-```
+```bash
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/features-dump.karaf
 # sample usage
 features-dump 
