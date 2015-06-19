@@ -24,3 +24,30 @@ while = {
     recur "$1" "$2"
 }
 
+# there's not native logic negation support, so I had to implement it with if
+not = {
+    if {eval $1} { false } { true}
+}
+
+# invoke the content of a closure n times
+# ex. do_n_times 3 {info; echo done}
+do_n_times = {
+    not = {
+        if {eval $1} { false } { true}
+    }
+    sequence = {
+        empty = { if {"" equals ("" valueof "$1") } {true} {false} }
+        if {(empty $1)} {seed = (new java.util.concurrent.atomic.AtomicInteger ($seed incrementAndGet) ) } {seed = (new java.util.concurrent.atomic.AtomicInteger $1) } 
+        $seed get
+    }
+    while = {
+        recur = {
+            if {eval $1} {eval $2 ; recur "$1" "$2"} { } 
+        }
+        recur "$1" "$2"
+    }
+    i = (sequence 0 )
+    limit = "$1"
+    action = "$2"
+    while { not  (($i tostring) equals ($limit tostring ) ) }  { echo $i ;  eval $action;  i = (sequence) }
+}
