@@ -1,0 +1,40 @@
+# Imports resources (ex. xml or properties) into a Fabric Profile
+# ex.
+# import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest"
+# profile-display --display-resources paolo
+
+import-resource = {
+ 
+    _profile = $1
+    _version = $2
+    _logical_file_path = $3
+    _physical_file_path = $4
+     
+    _file_content = ((cat file://$_physical_file_path) | tac)
+     
+    _sref = $.context getServiceReference "io.fabric8.git.GitDataStore"
+    _dstore = $.context getService $_sref
+
+    _dstore_class = $_dstore class
+    _dstore_method = $_dstore_class  getdeclaredmethod newGitWriteContext
+    $_dstore_method setAccessible true
+
+    _git_context = $_dstore_method invoke $_dstore 
+
+    _fabric_core_id = (id io.fabric8.fabric-core)
+
+    _profile_builder_class = (($.context bundle $_fabric_core_id) loadClass io.fabric8.internal.DefaultProfileBuilders)
+    _profile_builder_instance = $_profile_builder_class newInstance
+
+    _profile_service_ref = $.context getServiceReference "io.fabric8.api.ProfileService"
+    _profile_service = $.context getService $_profile_service_ref
+
+    _current_profile = $_profile_service getProfile $_version $_profile
+
+    builder = $_profile_builder_instance profileBuilderFrom $_current_profile
+    $builder addfileconfiguration $_logical_file_path ($_file_content getbytes)
+    profile = $builder getprofile
+    $_dstore updateProfile $_git_context $profile true
+     
+}
+
