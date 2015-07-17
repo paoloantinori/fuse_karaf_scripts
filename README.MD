@@ -58,7 +58,7 @@ source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/import-res
 # or
 source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/import-resources-6.2.karaf
 # sample usage
-import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest"
+import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest.xml"
 ```
 
 - `log-levels.karaf`: Prints the current level of all the known Loggers registered on the platform 
