@@ -1,0 +1,34 @@
+#current limit is that the command halts if it tries to connect to a node that is stopped. some addtional logic should be added to protect from that
+zk-map = {
+  nc = { 
+    _split=$args split ":"
+    _host=$_split 0
+    _port=$_split 1
+    _s=new java.net.Socket $_host $_port
+    _os=$_s getOutputStream
+    _wr=new java.io.PrintWriter $_os
+    $_wr println "stat"
+    $_wr flush
+
+    _is=($_s getInputStream | grep --color never Mode)
+
+    $_os close
+    $_s close
+  }
+
+  _map=new java.util.HashMap 
+  
+  each ((ensemble-list  | grep -v '\[id\]' | tac )  split "\n") { _container = (( $it replaceAll "[^\\w-]" "" ) replaceAll "m$" "" ); $_map put $_container ""}
+
+  each ($_map keySet) { _ip=((container-info $it | grep --color never "^Network Address" | tac) split " " | grep --color never "^\d+" | tac) ; $_map put $it $_ip  }
+
+  each ($_map entrySet) { _port=((container-connect ($it getKey) config:list| grep --color never "clientPort " | tac) split " " | grep --color never "^\d+" | tac) ; $_map put ($it getKey) (($it getValue) concat ":$_port" )  }
+
+  each ($_map entrySet) { _conn = ( ($it getValue) replaceAll "[^.:\\d]" "" ) ; echo ($it toString); (nc $_conn ) ; echo "" }
+
+}
+
+zk-map
+
+
+

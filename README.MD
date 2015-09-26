@@ -9,7 +9,7 @@ A collection of Karaf script to add functionality to JBoss Fuse Platform
 JBossFuse:karaf@root> idof jline
 Command not found: idof
 
-JBossFuse:karaf@root> source https://raw.githubusercontent.com/paoloantinori/fuse_karaf_scripts/master/idof.karaf
+JBossFuse:karaf@root> source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/idof.karaf
 ((list -s | grep $args | tac) split '[ [ ]]' | head -n 2 | tail -n 1 | tac) trim
 
 JBossFuse:karaf@root> idof jline
@@ -19,26 +19,26 @@ JBossFuse:karaf@root> idof jline
 ### TOC:
 - `lang_utils.karaf`: Generic helper aliases for other scripts, sequences, counters, etc...
 ```bash
-source https://raw.githubusercontent.com/paoloantinori/fuse_karaf_scripts/master/lang_utils.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/lang_utils.karaf
 # sample usage
 countdown 10
 ```
 
 - `byteman.karaf`: Enables Byteman packages in bootdelegation classloader via a fragment 
 ```bash
-source https://raw.githubusercontent.com/paoloantinori/fuse_karaf_scripts/master/byteman.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/byteman.karaf
 ```
 
 - `features-dump.karaf`: Prints the content of all the available features known to runtime
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/features-dump.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/features-dump.karaf
 # sample usage
 features-dump 
 ```
 
 - `groovy.karaf`: Installs Groovy shell as a command
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/groovy.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/groovy.karaf
 # sample usage
 install_groovy
 groovy:me '3 * 3'
@@ -47,65 +47,72 @@ a = "var in karaf scope" ; groovy:me var_in_groovy "$a" "var_in_groovy * 3" # ex
 
 - `idof.karaf`: Return numerical id of a bundle given a Symbolic-Name
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/idof.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/idof.karaf
 # sample usage
 idof jline
 ```
 
 - `import-resources.karaf` and `import-resources-6.2.karaf`: Import filesystem resources into a Fabric Profile
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/import-resources.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/import-resources.karaf
 # or
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/import-resources-6.2.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/import-resources-6.2.karaf
 # sample usage
 import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest.xml"
 ```
 
 - `log-levels.karaf`: Prints the current level of all the known Loggers registered on the platform 
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/log-levels.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/log-levels.karaf
 # sample usage
 log-levels
 ```
 
 - `log-entry.karaf`: Adds a log entry into configured log file.
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/log-entry.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/log-entry.karaf
 # sample usage
 log-entry this will be added to logs
 ```
 
 - `log-set-multi.karaf`: Set a log level to each logger containing keyword (ignore case) in its name.
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/log-set-multi.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/log-set-multi.karaf
 # sample usage
 log-set-multi DEBUG jolokia curator
 ```
 
 - `profiles-dump.karaf`: Recursively prints the content of all Fabirc profiles 
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/profiles-dump.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/profiles-dump.karaf
 # sample usage
 profiles-dump
 ```
 
 - `symbolic-names.karaf`: Produces a list of only symbolic-names of installed bundles
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/symbolic-names.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/symbolic-names.karaf
 # sample usage
 symbolic-names
 ```
 
 - `startup-levels.karaf`: Produces a list of startup levels of all bundles
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/startup-levels.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/startup-levels.karaf
 # sample usage
 startup-levels
 ```
 
 - `zk-enable-autopurge.karaf`: Enable autopurge functionality for ZK 
 ```bash
-source https://github.com/paoloantinori/fuse_karaf_scripts/raw/master/profiles-dump.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/profiles-dump.karaf
 # sample usage
 # Needs to be manually invoked due to a timing issue with dynamic-import!!!
+```
+
+- `zk-identify-leader.karaf`: Prints ZK network map 
+```bash
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/zk-identify-leader.karaf
+# sample usage
+# zk-map
 ```
