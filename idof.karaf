@@ -1,3 +1,3 @@
 # returns a numberic id from a Symbolic-Name of an installed bundle
 # obsolete in JBoss Fuse 6.2
-idof = { ((list -s | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim } 
+idof = { ((list -t 0 -s | grep $args | tac) split '[\[\]]' | head -n 2 | tail -n 1 | tac) trim } 
