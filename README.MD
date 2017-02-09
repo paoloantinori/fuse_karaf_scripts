@@ -29,11 +29,30 @@ countdown 10
 source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/byteman.karaf
 ```
 
+- `encrypt.karaf`: Encrypt values to be used in xmlns:enc="http://karaf.apache.org/xmlns/jasypt/v1.0.0"
+```bash
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/encrypt.karaf
+```
+
 - `features-dump.karaf`: Prints the content of all the available features known to runtime
 ```bash
 source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/features-dump.karaf
 # sample usage
 features-dump 
+```
+
+- `find-pid.karaf`: Search for a key in ConfigAdmin for specified Fabric container and tells you which profile includes it
+```bash
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/find-pid.karaf
+# sample usage
+find-pid "org.ops4j.pax" "root" "1.0" 
+```
+
+- `get-version-profile-version.karaf`: Tells you Fabric default version
+```bash
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/get-version-profile-version.karaf
+# sample usage
+default-version
 ```
 
 - `groovy.karaf`: Installs Groovy shell as a command

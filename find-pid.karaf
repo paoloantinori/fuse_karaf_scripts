@@ -1,0 +1,34 @@
+# find where a configadmin entry is defined in profiles associated to a specific contianer
+# ex.
+# find-pid "org.ops4j.pax" "root" "1.0" 
+
+empty = { if {"" equals ("" valueof "$1") } {true} {false} }
+addcommand arrays (($.context bundle 0) loadClass java.util.Arrays)
+
+find-pid = {
+    _KEY="$1"
+    _CONTAINER="$2"
+    _VERSION="$3"
+    _profile_service_ref = $.context getServiceReference "io.fabric8.api.ProfileService"
+    _profile_service = $.context getService $_profile_service_ref
+    _current_profile = $_profile_service getProfile $_VERSION "paolo"
+
+    _fabric_service_ref = $.context getServiceReference "io.fabric8.api.FabricService"
+    _fabric_service = $.context getService $_fabric_service_ref
+    _current_container = $_fabric_service getContainer $_CONTAINER
+    _arr_profiles = $_current_container getProfiles
+
+    profiles_list = (arrays:asList $_arr_profiles)
+
+    each $profiles_list {
+        p=$_profile_service getProfile $_VERSION  ($it getid); 
+        c = $p getconfigurations; 
+        res = (echo ($c tostring) | grep $_KEY| tac); 
+        if {(eval (empty $res))}  {
+        } {
+            shell:printf "============= PROFILE: %-40s ==========" ($it getid); 
+            echo "";  
+            echo ($c tostring) | grep $_KEY 
+            } 
+    }
+}
