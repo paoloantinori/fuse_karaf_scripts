@@ -1,3 +1,5 @@
 # get the default version number
 
+default-version = {
 ((version-list | grep 'true' | tac ) split ' ' ) | head -n 1
+}

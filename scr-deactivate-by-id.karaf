@@ -1,0 +1,13 @@
+# Disable SCR component by id
+# ex.
+# scr-deactivate-by-id 64
+
+scr-deactivate-by-id = {
+ 
+    _component_id = $1
+    _sref = $.context getServiceReference "org.apache.felix.scr.ScrService"
+    _scr = $.context getService $_sref
+    _component = $_scr getComponent $_component_id
+    $_component disable
+     
+}

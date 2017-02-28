@@ -108,6 +108,13 @@ source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/profiles-du
 profiles-dump
 ```
 
+- `scr-deactivate-by-id.karaf`: Deactivate a single SCR component, passing id
+```bash
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/scr-deactivate-by-id.karaf
+# sample usage
+scr-deactivate-by-id 64
+```
+
 - `symbolic-names.karaf`: Produces a list of only symbolic-names of installed bundles
 ```bash
 source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/symbolic-names.karaf
