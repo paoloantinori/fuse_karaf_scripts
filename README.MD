@@ -71,11 +71,13 @@ source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/idof.karaf
 idof jline
 ```
 
-- `import-resources.karaf` and `import-resources-6.2.karaf`: Import filesystem resources into a Fabric Profile
+- `import-resources-6.1.karaf , `import-resources-6.2.karaf` and `import-resources-6.3.karaf`: Import filesystem resources into a Fabric Profile
 ```bash
-source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/import-resources.karaf
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/import-resources-6.1.karaf
 # or
 source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/import-resources-6.2.karaf
+# or
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/import-resources-6.3.karaf
 # sample usage
 import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest.xml"
 ```
