@@ -2,7 +2,22 @@
 # ex.
 # import-resource "paolo" "1.0" "broker.xml" "/tmp/paolotest"
 # profile-display --display-resources paolo
-
+#
+#
+# The usual supported way to obtain the same result in JBoss Fuse is to use Git from CLI:
+#
+#
+# cd jboss-fuse-6.3.0.redhat-*
+# cd data/git/local/fabric/fabric/profiles
+# cp -a hawtio.profile/ kevin.profile
+# echo "whatever here" >> kevin.profile/my.txt
+# git add -A .
+# git commit -m"Messing around in bash"
+# git push --set-upstream origin 2.0
+# 
+# profile-display -r -d --version 2.0 kevin# 
+# 
+#
 import-resource = {
  
     _profile = $1
