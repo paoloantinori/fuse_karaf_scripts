@@ -131,6 +131,13 @@ source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/startup-lev
 startup-levels
 ```
 
+- `wirings.karaf`: Produces a list of OSGi import and export wirings
+```bash
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/wirings.karaf
+# sample usage
+wirings 1
+```
+
 - `zk-enable-autopurge.karaf`: Enable autopurge functionality for ZK 
 ```bash
 source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/profiles-dump.karaf

@@ -1,0 +1,101 @@
+# The information provided by this script could be obtained with the following list of commands
+
+##### provider and corresponding imported package
+# JBossFuse:karaf@root> imports --show-importer  (id io.fabric8.fabric-core)
+#
+##### exported packages and list of consumers
+# JBossFuse:karaf@root> exports --imports   (id io.fabric8.fabric-core)
+# 
+##### provided services
+# JBossFuse:karaf@root> ls (id io.fabric8.fabric-core
+#
+##### consumed services
+#
+# JBossFuse:karaf@root> ls -u (id io.fabric8.fabric-core)
+
+
+
+# usage:
+#    wirings 1 # where the argument is a bundle id
+wirings = {
+
+    addcommand arrays (($.context bundle 0) loadClass java.util.Arrays)
+
+    not = {
+        if {eval $1} { false } { true}
+    }
+
+    _PID="$1"
+    _felix=($.context bundle (eval "$_PID"))
+    _bundle=( $_felix bundle)
+    _w=($_bundle adapt (($.context bundle 0) loadClass org.osgi.framework.wiring.BundleWiring))
+
+    _cc=[]
+    $_cc addAll ($_w getCapabilities "osgi.wiring.package")
+    $_cc addAll ($_w getCapabilities "osgi.service")
+
+    _rr=[]
+    $_rr addAll ($_w getCapabilities "osgi.wiring.package")
+    $_rr addAll ($_w getCapabilities "osgi.service")
+
+    _pp=[]
+    $_pp addAll ($_w getProvidedWires "osgi.wiring.package")
+    $_pp addAll ($_w getProvidedWires "osgi.service")
+
+    _rw=[]
+    $_rw addAll ($_w getRequiredWires "osgi.wiring.package")
+    $_rw addAll ($_w getRequiredWires "osgi.service")
+
+
+    _ss=($_bundle getServicesInUse)
+    _rs=($_bundle getRegisteredServices)
+
+
+    shell:printf "Capabilities: %-60s %n" ($_cc size); 
+    each $_cc {
+        shell:printf "   %-60s%n" $it; 
+    }
+
+    shell:printf "Requirements: %-60s %n" ($_rr size); 
+    each $_rr {
+        shell:printf "   %-60s%n" $it; 
+    }
+
+    shell:printf "Exporting: %-60s %n" ($_pp size); 
+    each $_pp {
+        shell:printf "   %-60s%n" $it; 
+    }
+
+    shell:printf "Importing: %-60s %n" ($_rw size); 
+    each $_rw {
+        shell:printf "   %-60s%n" $it; 
+    }
+
+    if {$_ss} {
+        _list=(arrays:asList $_ss)
+        shell:printf "Services[consumed]: %-60s %n" ($_list size); 
+        each $_list {
+            shell:printf "   Service %s%n" $it 
+            shell:printf "       exposed by bundle  %-60s %n" ($it bundle)
+        }
+    }
+
+    if {$_rs} {
+        _list=(arrays:asList $_rs)
+        shell:printf "Services[exposed]: %-60s %n" ($_list size); 
+        each $_list {
+            that = $it
+            shell:printf "   Service: %-60s%n" $that
+            _serviceList=(arrays:asList ($that getUsingBundles))
+            if { $_serviceList } {
+                each $_serviceList {
+                    shell:printf "      used by bundle  %-60s %n" $it 
+                    }
+                }
+                {shell:printf "      no consumers for this service %n" true}
+
+        }
+
+    }
+
+}
