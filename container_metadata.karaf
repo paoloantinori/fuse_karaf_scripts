@@ -1,0 +1,30 @@
+# Display a container create options
+# ex.
+# container-create-options "ssh2"
+
+container-create-options = {
+ 
+    _container = $1
+    s = $.context getService ($.context getServiceReference "io.fabric8.api.FabricService")
+    (($s  getcontainer $_container) metadata) createoptions
+     
+}
+
+
+# Modify a container create options
+# ex.
+# modify-create-options "ssh2" "environmentalVariables" [Jan=1 Feb=2 Mar=3]
+
+modify-create-options = {
+    _container = $1
+    _field = $2
+    _map = $3
+
+    _fabric_manager_class=(($.context bundle (eval (id io.fabric8.fabric-core))) loadClass io.fabric8.core.jmx.FabricManager)
+    _fabric_manager_impl_class=(($.context bundle (eval (id io.fabric8.fabric-core))) loadClass io.fabric8.service.FabricServiceImpl)
+
+    s = $.context getService ($.context getServiceReference "io.fabric8.api.FabricService")
+    _fabric_manager=($_fabric_manager_class getconstructor $_fabric_manager_impl_class) newInstance $s
+
+    $_fabric_manager changeCreateOptionsField $_container $_field $_map
+}

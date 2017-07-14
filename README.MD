@@ -29,6 +29,12 @@ countdown 10
 source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/byteman.karaf
 ```
 
+
+- `container_create_options.karaf`: Print Container Create Options
+```bash
+source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/container_create_options.karaf
+```
+
 - `encrypt.karaf`: Encrypt values to be used in xmlns:enc="http://karaf.apache.org/xmlns/jasypt/v1.0.0"
 ```bash
 source http://cdn.rawgit.com/paoloantinori/fuse_karaf_scripts/master/encrypt.karaf
